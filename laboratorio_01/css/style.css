@@ -1,0 +1,9 @@
+table{
+	text-align:left;
+	padding: 10px;
+	border:dotted 1px;
+}
+
+td,th{
+	padding-left:10px;
+}

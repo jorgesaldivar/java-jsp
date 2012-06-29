@@ -1,0 +1,9 @@
+<script>
+var carrera="<%=user.getCarrera()%>";
+options=document.getElementsByTagName("option");
+for (i=0;i<options.length;i++){
+    if (options[i].innerHTML==carrera){
+       document.getElementById("carrera").selectedIndex=i;
+    }
+}
+</script>

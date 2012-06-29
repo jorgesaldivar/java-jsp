@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<head>
+	<!--Made by Jorge Saldivar A01033317-->
+	
+	<!--Title-->
+	<title>Jorge Sald&iacute;var - Lab04</title>
+	
+	<!--Image beside title-->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!--Se define el CSS-->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+	<!--JQuery needed for adding options-->
+	<script type="text/javascript" src="js/jqueryV1.3.2.min.js"></script>
+	
+	<!--Javascript validate form-->
+	<script type="text/javascript">
+		
+		function validateForm(){
+		
+		var errors 	= "";
+		
+		//Validate Name (text)
+		var x = document.forms["form"]["name"];
+		
+			if (x.value == null || x.value == "")
+				{
+				errors += "First name must be filled out\n";
+				document.getElementById("nameSpan").style.display = 'block';
+				document.getElementById("nameLabel").style.color = 'yellow';
+				x.style.backgroundColor = "yellow";
+				}
+			else {
+				document.getElementById("nameSpan").style.display = 'none';
+				document.getElementById("nameLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+		
+		//Validate year_old (numbers)
+ 		var x = document.forms["form"]["year_old"];
+		var pattern = /^[0-9]+$/;
+		
+			if(!x.value.match(pattern)){
+				errors += "Please enter years\n";
+				 document.getElementById("year_oldSpan").style.display = 'block';
+				 document.getElementById("year_oldLabel").style.color = 'yellow';
+				 x.style.backgroundColor = "yellow";
+			}
+			else {
+				document.getElementById("year_oldSpan").style.display = 'none';
+				document.getElementById("year_oldLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+				
+		//Validate sex (radio)
+		var x = document.forms["form"]["sex"];
+		var y = 0;	//boolean
+		var i;
+		
+			for (i = 0;i < x.length; i++){
+				if (x[i].checked == true){
+					y = 1;
+				}
+			}		
+			
+			if(y==0)
+			{
+				errors += "Please select sex\n";
+				 document.getElementById("sexSpan").style.display = 'block';
+				 document.getElementById("sexLabel").style.color = 'yellow';
+			}
+			else {
+				document.getElementById("sexSpan").style.display = 'none';
+				document.getElementById("sexLabel").style.color = '#fff';
+			}
+		
+		//Validate Country (select)
+		var x = document.forms["form"]["country"];
+			
+			if(x.selectedIndex == 0)
+			{
+				errors += "Please select country\n";
+				 document.getElementById("countrySpan").style.display = 'block';
+				 document.getElementById("countryLabel").style.color = 'yellow';
+				 x.style.backgroundColor = "yellow";
+			}
+			else {
+				document.getElementById("countrySpan").style.display = 'none';
+				document.getElementById("countryLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+		
+		//Validate Address (text)
+		var x = document.forms["form"]["address"];
+		
+			if (x.value == null || x.value == "")
+			  {
+			  errors += "Please enter address\n";
+			  document.getElementById("addressSpan").style.display = 'block';
+			  document.getElementById("addressLabel").style.color = 'yellow';
+			  x.style.backgroundColor = "yellow";
+			  }		
+			else {
+				document.getElementById("addressSpan").style.display = 'none';
+				document.getElementById("addressLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+	
+		
+		//Validate Phone (numbers)
+ 		var x = document.forms["form"]["phone"];
+		var pattern = /^[0-9]+$/;
+		
+			if(!x.value.match(pattern)){
+				errors += "Please enter phone number\n";
+				 document.getElementById("phoneSpan").style.display = 'block';
+				 document.getElementById("phoneLabel").style.color = 'yellow';
+				 x.style.backgroundColor = "yellow";
+			}
+			else {
+				document.getElementById("phoneSpan").style.display = 'none';
+				document.getElementById("phoneLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+		
+		//Validate Mail	(text)
+		var x 		= document.forms["form"]["mail"];
+		var atpos 	= x.value.indexOf("@");
+		var dotpos	= x.value.lastIndexOf(".");
+		
+		
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+			  {
+				errors += "Not a valid e-mail address\n";
+				 document.getElementById("mailSpan").style.display = 'block';
+				 document.getElementById("mailLabel").style.color = 'yellow';
+				 x.style.backgroundColor = "yellow";
+			  }
+			  else {
+				document.getElementById("mailSpan").style.display = 'none';
+				document.getElementById("mailLabel").style.color = '#fff';
+				x.style.backgroundColor = "#e6e6e6";
+			}
+		
+		//Validate Health (radio)
+		var y = 0;	//boolean
+		var i;
+		
+			for (i = 0;i < document.forms["form"]["health"].length; i++){
+				if (document.forms["form"]["health"][i].checked == true){
+					y = 1;
+				}
+			}		
+			
+			if(y==0)
+			{
+				errors += "Please select health condition\n";
+				 document.getElementById("healthSpan").style.display = 'block';
+				 document.getElementById("healthLabel").style.color = 'yellow';
+			}
+			else {
+				document.getElementById("healthSpan").style.display = 'none';
+				 document.getElementById("healthLabel").style.color = '#fff';
+			}
+			
+		//Display errors
+			if(errors){ 
+				//alert(errors);
+				return false;
+			}
+
+		}
+	
+	</script>
+	
+	<!--Javascript add options-->
+	<script type="text/javascript">
+ 
+		$(document).ready(function(){
+		 
+			var counter = 2;
+		 
+			$("#addButton").click(function () {
+		 
+			if(counter>10){
+					alert("Solo se permiten 10");
+					return false;
+			}   
+		 
+			var newoptionsDiv = $(document.createElement('div'))
+				 .attr("id", 'optionsDiv' + counter);
+		 
+			newoptionsDiv.after().html('<label>' + counter + '. </label>' +
+				  '<input type="text" name="equipment" id="equipment" value="" >');
+		 
+			newoptionsDiv.appendTo("#optionsGroup");
+		 
+			counter++;
+			 });
+		 
+			 $("#removeButton").click(function () {
+			if(counter==2){
+				  alert("No more to remove");
+				  return false;
+			   }   
+		 
+			counter--;
+		 
+				$("#optionsDiv" + counter).remove();
+		 
+			 });
+
+		  });
+	</script>
+
+	<!--CSS on site-->
+	<style>
+	form#form input[type=checkbox]{
+		float:right;
+	}
+	form#form span {
+		position:absolute;
+		width:400px;
+		margin-left:550px;
+		margin-top:-40px;
+		font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+		font-size:20px;
+		color: yellow;
+		display:none;
+	}
+	</style>
+
+</head>
+
+<html>
+
+	<body>
+		
+		<!--NAVIGATION Drop down MENU-->
+		<div id="center">
+		<ul id="nav">
+				
+				<li><a href="">Inicio</a>
+					<ul>
+						<li><a href="A01033317.html">Registro de paciente</a></li>
+					</ul>
+				</li>
+				<li><a href="">Otro</a></li>
+
+		</ul>
+		</div>
+
+
+		<!--User form-->
+		<form id="form" name="form" method="GET" action="Servidor.html" onsubmit="return validateForm()">
+
+				<fieldset>
+					<legend>Datos personales</legend>
+					<ul>							
+						<li><label id="nameLabel">Nombre: 				</label><input type="text" name="name" autofocus/></li>					<span id="nameSpan">** Nombre requerido</span>
+												
+						<li><label id="year_oldLabel">Edad: 			</label><input type="text" name="year_old" maxlength="2"/></li>			<span id="year_oldSpan">** Edad requerida (solo n&uacute;meros)</span>
+						<li><label id="sexLabel">Sexo: 					</label>		
+															 <input type="radio" name="sex" value="male" /> Hombre
+															 <input type="radio" name="sex" value="female" /> Mujer</li> 						<span id="sexSpan">** Selecciona sexo</span>
+						<li><label id="countryLabel">Pa&iacute;s:		</label>
+																		<select name = "country">
+																			<option value = "Mexico" selected>&nbsp;</option>
+																			<option value = "Mexico">M&eacute;xico</option>
+																			<option value = "USA">Estados Unidos</option>
+																		</select></li>															<span id="countrySpan">** Selecciona pa&iacute;s</span>
+						<li><label id="addressLabel">Domicilio: 		</label><input type="text" name="address" /></li>						<span id="addressSpan">** Ingresa domicilio</span>
+						<li><label id="phoneLabel">Tel&eacute;fono: 	</label><input type="text" name="phone" /></li>							<span id="phoneSpan">** Tel&eacute;fono requerido (solo n&uacute;meros)</span>
+						<li><label id="mailLabel">Correo: 				</label><input type="text" name="mail" /></li>							<span id="mailSpan">** Correo v&aacute;lido requerido</span>
+					</ul>
+				</fieldset>
+				  
+				<!--Regular and label have CSS on element-->
+				<fieldset>
+					<legend>Salud</legend>
+						<ul>
+							<li><label id="healthLabel" style="width:220px;">Estado actual de salud: 			</label>		
+														<input type="radio" name="health" value="excelent" /> Excelente&nbsp;
+														<input type="radio" name="health" value="good" /> Bien</li> 
+														<li style="margin-left:230px;">	 <input type="radio" name="health" value="regular" /> Regular
+														<input type="radio" name="health" value="bad" style="margin-left: 27px;" /> Malo</li> 				<span id="healthSpan">** Selecciona estado de salud</span>
+						</ul>
+				</fieldset>
+						  
+				<fieldset>
+					<legend>Enfermedades</legend>
+						<ul>
+							<li><input type="checkbox" name="disease" value="Alta presion sanguinea" /> Alta presion sanguinea	</li>
+							<li><input type="checkbox" name="disease" value="Deformaciones oseas" /> Deformaciones oseas</li>
+							<li><input type="checkbox" name="disease" value="Dolor de cabeza frecuente o severo" /> Dolor de cabeza frecuente o severo</li>
+							<li><input type="checkbox" name="disease" value="Artritis" /> Artritis 		</li>					
+							<li><input type="checkbox" name="disease" value="Dolor de articulaciones" /> Dolor de articulaciones</li>
+							<li><input type="checkbox" name="disease" value="Mareos" /> Mareos</li>
+							<li><input type="checkbox" name="disease" value="Problemas hepaticos" /> Problemas hepaticos</li>
+							<li><input type="checkbox" name="disease" value="Problemas renales" /> Problemas renales</li>
+							<li><input type="checkbox" name="disease" value="Asma" /> Asma</li>
+							<li><input type="checkbox" name="disease" value="Diabetes" /> Diabetes	</li>
+						</ul>
+				</fieldset>
+			
+				<fieldset>
+					<legend>Aparatos</legend>	
+						<div id="optionsGroup">
+							<label >1.			</label><input type="text" name="equipment" />	
+						</div>
+						
+						<!--Add more input text using javascript-->
+						<input type="button" value="Remover" id="removeButton">
+						<input type="button" value="Agregar" id="addButton">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Comentarios</legend>
+						<textarea rows="3" placeholder="Comentario..." name="comment"></textarea> 
+
+					<!--Send data-->
+					<input type="submit" value="Mandar" /> 
+					<input type="reset" value="Borrar" />	 
+
+				</fieldset>
+		  
+		</form>
+	
+	</body>
+	
+</html>

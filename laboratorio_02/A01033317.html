@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+	<!--Made by Jorge Saldivar A01033317-->
+	
+	<!--Title-->
+	<title>Jorge Sald&iacute;var - Lab02</title>
+	
+	<!--Image beside title-->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!--Se define el CSS-->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+	<!--JQuery needed-->
+	<script type="text/javascript" src="js/jqueryV1.3.2.min.js"></script>
+	
+	<!--Javascript add options-->
+	<script type="text/javascript">
+ 
+		$(document).ready(function(){
+		 
+			var counter = 2;
+		 
+			$("#addButton").click(function () {
+		 
+			if(counter>10){
+					alert("Solo se permiten 10");
+					return false;
+			}   
+		 
+			var newoptionsDiv = $(document.createElement('div'))
+				 .attr("id", 'optionsDiv' + counter);
+		 
+			newoptionsDiv.after().html('<label>' + counter + '. </label>' +
+				  '<input type="text" name="equipment" id="equipment" value="" >');
+		 
+			newoptionsDiv.appendTo("#optionsGroup");
+		 
+			counter++;
+			 });
+		 
+			 $("#removeButton").click(function () {
+			if(counter==2){
+				  alert("No more to remove");
+				  return false;
+			   }   
+		 
+			counter--;
+		 
+				$("#optionsDiv" + counter).remove();
+		 
+			 });
+
+		  });
+	</script>
+
+	<!--CSS on site-->
+	<style>
+	form#form input[type=checkbox]{
+		float:right;
+	}
+	</style>
+
+</head>
+
+<html>
+
+	<body>
+		
+		<!--NAVIGATION Drop down MENU-->
+		<div id="center">
+		<ul id="nav">
+				
+				<li><a href="">Inicio</a>
+					<ul>
+						<li><a href="A01033317.html">Registro de paciente</a></li>
+					</ul>
+				</li>
+				<li><a href="">Otro</a></li>
+
+		</ul>
+		</div>
+
+
+		<!--User form-->
+		<form id="form" method="GET" action="Servidor.html">
+
+				<fieldset>
+					<legend>Datos personales</legend>
+					<ul>
+						<li><label>Nombre: 				</label><input type="text" name="name" autofocus/></li>
+						<li><label>Edad: 				</label><input type="text" name="year_old" /></li>
+						<li><label>Sexo: 				</label>		
+															 <input type="radio" name="sex" value="male" /> Hombre
+															 <input type="radio" name="sex" value="female" /> Mujer</li> 
+						<li><label>Domicilio: 			</label><input type="text" name="address" /></li>
+						<li><label>Tel&eacute;fono: 	</label><input type="text" name="phone" /></li>
+						<li><label>Correo: 				</label><input type="email" name="mail" /></li>
+					</ul>
+				</fieldset>
+				  
+				<!--Regular and label have CSS on element-->
+				<fieldset>
+					<legend>Salud</legend>
+						<ul>
+							<li><label style="width:220px;">Estado actual de salud: 			</label>		
+														<input type="radio" name="health" value="excelent" /> Excelente&nbsp;
+														<input type="radio" name="health" value="good" /> Bien</li> 
+														<li style="margin-left:230px;">	 <input type="radio" name="health" value="regular" /> Regular
+														<input type="radio" name="health" value="bad" style="margin-left: 27px;" /> Malo</li> 
+						</ul>
+				</fieldset>
+						  
+				<fieldset>
+					<legend>Enfermedades</legend>
+						<ul>
+							<li><input type="checkbox" name="disease" value="Alta presion sanguinea" /> Alta presion sanguinea	</li>
+							<li><input type="checkbox" name="disease" value="Deformaciones oseas" /> Deformaciones oseas</li>
+							<li><input type="checkbox" name="disease" value="Dolor de cabeza frecuente o severo" /> Dolor de cabeza frecuente o severo</li>
+							<li><input type="checkbox" name="disease" value="Artritis" /> Artritis 		</li>					
+							<li><input type="checkbox" name="disease" value="Dolor de articulaciones" /> Dolor de articulaciones</li>
+							<li><input type="checkbox" name="disease" value="Mareos" /> Mareos</li>
+							<li><input type="checkbox" name="disease" value="Problemas hepaticos" /> Problemas hepaticos</li>
+							<li><input type="checkbox" name="disease" value="Problemas renales" /> Problemas renales</li>
+							<li><input type="checkbox" name="disease" value="Asma" /> Asma</li>
+							<li><input type="checkbox" name="disease" value="Diabetes" /> Diabetes	</li>
+						</ul>
+				</fieldset>
+			
+				<fieldset>
+					<legend>Aparatos</legend>	
+						<div id="optionsGroup">
+							<label >1.			</label><input type="text" name="equipment" />	
+						</div>
+						
+						<!--Add more input text using javascript-->
+						<input type="button" value="Remover" id="removeButton">
+						<input type="button" value="Agregar" id="addButton">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Comentarios</legend>
+						<textarea rows="3" placeholder="Comentario..." name="comment"></textarea> 
+
+					<!--Send data-->
+					<input type="submit" value="Mandar" /> 
+					<input type="reset" value="Borrar" />	 
+
+				</fieldset>
+		  
+		</form>
+	
+	</body>
+	
+</html>

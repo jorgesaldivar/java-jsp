@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<!--Made by Jorge Saldivar-->
+	
+	<!--Title-->
+	<title>Calendario</title>
+	
+	<!--Image beside title-->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!--JQuery-->
+	<script type="text/javascript" src="js/jqueryV1.7.2.js"></script>
+	
+	<!--Javascript for displaying calendar-->
+	<script type="text/javascript">
+	
+		var curr = new Date; 			//current date
+		var next = curr.getMonth() + 1;		//next month
+		var last = curr.getMonth() - 1;		//last month
+			
+		function actual(){
+		
+			var curr = new Date; 			// get current date
+				next = curr.getMonth() + 1;	//next month
+				last = curr.getMonth() - 1;	//last month
+			
+			var month = curr.getMonth();						
+			var nameMonth = nombre(month);		//get month name
+			var year = curr.getFullYear();
+			document.getElementById('month').innerHTML = nameMonth + ", " + year;	//prints month and year
+			
+			var daysOfMonth = diasMes(month,year);	//get total days in the selected month
+			var day = curr.getDate();		//get current day of today
+			
+			var i,k,counter = 1,startPrinting = 0;	//variables for the cycle
+			
+			var x = document.images;
+			x[0].src="images/imagen" + month + ".jpg";	//change image
+				
+			var DayOfWeek = curr.getUTCDay();		//day of week range 0 - 6
+			
+				//Gets start day of month
+				for(i = day;i > 1;i--){
+					if(DayOfWeek > 0){
+						DayOfWeek = DayOfWeek - 1;
+					}
+					else{
+						DayOfWeek = 6;
+					}
+				}
+			
+			var startDayOfMonth = DayOfWeek;
+			
+			//clean calendar white spaces
+			cleanCalendar();
+			
+			//Prints result in table
+			for(i=0;i<=5;i++){
+				if(counter > daysOfMonth){
+					break;
+				}
+				for(k=0;k<=6;k++){
+					if(k == startDayOfMonth){
+						startPrinting = 1;
+					}
+					if(startPrinting == 1){
+						document.getElementById('s'+ i + k).innerHTML = counter;
+						if(counter < daysOfMonth) {
+							++counter;
+						}
+						else {
+							++counter;
+							break;
+						}
+					}
+				}	
+			}
+		}
+		
+		function nextMonth(){
+
+			var curr = new Date(); 	//get current date
+			curr.setDate(1);	//set day to 1 to prevent errors
+			curr.setMonth(next);	//set next month
+				next++;
+				last++;
+				
+			var month = curr.getMonth();
+			var nameMonth = nombre(month);
+			var year = curr.getFullYear();
+			
+			document.getElementById('month').innerHTML = nameMonth + ", " + year;	//prints month, year
+			
+			var daysOfMonth = diasMes(month,year);	//total days of month	
+			
+			var i,k,counter = 1,startPrinting = 0;	//variables for the cycle
+			
+			var x=document.images;
+			x[0].src="images/imagen" + month + ".jpg"; 	//change image		
+				
+			var startDayOfMonth = curr.getUTCDay();		//start day of month	
+			
+			//clean calendar
+			cleanCalendar();
+
+			for(i=0;i<=5;i++){
+				
+				if(counter > daysOfMonth){
+					break;
+				}
+			
+				for(k=0;k<=6;k++){
+					if(k == startDayOfMonth){
+						startPrinting = 1;
+					}
+						if(startPrinting == 1){
+							document.getElementById('s'+ i + k).innerHTML = counter;
+							if(counter < daysOfMonth){
+								++counter;
+							}else{
+								++counter;
+								break;
+							}
+						}		
+				}	
+			}
+		}
+		
+		
+		function lastMonth(){
+
+			var curr = new Date(); 	//get current date
+			curr.setDate(1);	//set day to 1 to prevent errors
+			curr.setMonth(last);	//set next month
+				next--;
+				last--;
+				
+			var month = curr.getMonth();
+			var nameMonth = nombre(month);
+			var year = curr.getFullYear();
+			
+			document.getElementById('month').innerHTML = nameMonth + ", " + year;	//prints month, year
+			
+			var daysOfMonth = diasMes(month,year);	//total days of month	
+			
+			var i,k,counter = 1,startPrinting = 0;	//variables for the cycle
+			
+			var x=document.images;
+			x[0].src="images/imagen" + month + ".jpg"; 	//change image		
+				
+			var startDayOfMonth = curr.getUTCDay();		//start day of month	
+			
+			//clean calendar
+			cleanCalendar();
+
+			for(i=0;i<=5;i++){
+				
+				if(counter > daysOfMonth){
+					break;
+				}
+			
+				for(k=0;k<=6;k++){
+					if(k == startDayOfMonth){
+						startPrinting = 1;
+					}
+						if(startPrinting == 1){
+							document.getElementById('s'+ i + k).innerHTML = counter;
+							if(counter < daysOfMonth){
+								++counter;
+							}else{
+								++counter;
+								break;
+							}
+						}		
+				}	
+			}
+		}
+		
+		function cleanCalendar(){
+		var i,k;for(i=0;i<=5;i++){for(k=0;k<=6;k++){document.getElementById('s'+ i + k).innerHTML = "&nbsp;";}}}
+		
+		function nombre(mes){
+		   switch (mes){
+		      case 0: return "Enero"; break;
+		      case 1: return "Febrero"; break;
+		      case 2: return "Marzo"; break;
+		      case 3: return "Abril"; break;
+		      case 4: return "Mayo"; break;
+		      case 5: return "Junio"; break;
+		      case 6: return "Julio"; break;
+		      case 7: return "Agosto"; break;
+		      case 8: return "Septiembre"; break;
+		      case 9: return "Octubre"; break;
+		      case 10: return "Noviembre"; break;
+		      case 11: return "Diciembre"; break;
+		   }
+		}
+		
+		function diasMes(mes, year){
+		   switch (mes){
+		      case 0: return 31; break;
+		      case 1: 
+			      if ((year%100!= 0 || year%400==0) && year%4==0) 
+				  return 29;
+			      else return 28; 
+				  break;
+		      case 2: return 31; break;
+		      case 3: return 30; break;
+		      case 4: return 31; break;
+		      case 5: return 30; break;
+		      case 6: return 31; break;
+		      case 7: return 31; break;
+		      case 8: return 30; break;
+		      case 9: return 31; break;
+		      case 10: return 30; break;
+		      case 11: return 31; break;
+		   }
+		}
+
+	</script>
+	
+	<!--Keyboard Nav-->
+	<script type="text/javascript">
+		function checkKey(e){
+			 switch (e.keyCode) {
+				case 40:
+					//alert('down');
+					 actual();
+					break;
+				case 38:
+				   // alert('up');
+				   actual();
+					break;
+				case 37:
+				   // alert('left');
+				   lastMonth();
+					break;
+				case 39:
+					//alert('right');
+					nextMonth();
+					break;
+				default:
+				   // alert('???');  
+					}      
+		}
+
+		if ($.browser.mozilla) {
+			$(document).keypress (checkKey);
+		} else {
+			$(document).keydown (checkKey);
+		}
+	</script>
+	
+	<!--CSS File-->
+	<style type="text/css">
+		body{width:100%;margin-left:auto;margin-right:auto;}
+		#content{position:absolute;top:20%;left:40%;}
+		table{width:250px;}
+		td{width:30px;text-align:center}
+		
+	</style>
+
+</head>
+
+
+	<body>
+		
+		
+		<div id="content">
+		
+		<div><img id="foto" src="images/mapa.jpg" width="250px" border="0"/></div>
+		
+			<table cellspacing=0 cellpadding=2 border=2> 
+				<tr>
+					<th colspan=7 id="month">&nbsp;</th>
+				</tr> 
+				<tr>
+					<th>D</th><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th>
+				</tr> 
+				<tr>
+					<td id="s00">&nbsp;</td>
+					<td id="s01">&nbsp;</td>
+					<td id="s02">&nbsp;</td>
+					<td id="s03">&nbsp;</td>
+					<td id="s04">&nbsp;</td>
+					<td id="s05">&nbsp;</td>
+					<td id="s06">&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td id="s10">&nbsp;</td>
+					<td id="s11">&nbsp;</td>
+					<td id="s12">&nbsp;</td>
+					<td id="s13">&nbsp;</td>
+					<td id="s14">&nbsp;</td>
+					<td id="s15">&nbsp;</td>
+					<td id="s16">&nbsp;</td>
+				</tr> 
+				<tr>
+					<td id="s20">&nbsp;</td>
+					<td id="s21">&nbsp;</td>
+					<td id="s22">&nbsp;</td>
+					<td id="s23">&nbsp;</td>
+					<td id="s24">&nbsp;</td>
+					<td id="s25">&nbsp;</td>
+					<td id="s26">&nbsp;</td>
+				</tr>
+				<tr>
+					<td id="s30">&nbsp;</td>
+					<td id="s31">&nbsp;</td>
+					<td id="s32">&nbsp;</td>
+					<td id="s33">&nbsp;</td>
+					<td id="s34">&nbsp;</td>
+					<td id="s35">&nbsp;</td>
+					<td id="s36">&nbsp;</td>
+				</tr>
+				<tr>
+					<td id="s40">&nbsp;</td>
+					<td id="s41">&nbsp;</td>
+					<td id="s42">&nbsp;</td>
+					<td id="s43">&nbsp;</td>
+					<td id="s44">&nbsp;</td>
+					<td id="s45">&nbsp;</td>
+					<td id="s46">&nbsp;</td>
+				</tr>
+				<tr>
+					<td id="s50">&nbsp;</td>
+					<td id="s51">&nbsp;</td>
+					<td id="s52">&nbsp;</td>
+					<td id="s53">&nbsp;</td>
+					<td id="s54">&nbsp;</td>
+					<td id="s55">&nbsp;</td>
+					<td id="s56">&nbsp;</td>
+				</tr>
+
+			</table>
+			<br/>
+			
+			<input type="button" value="Calendario del mes actual" onclick="actual()"/>
+			<input type="button" value="<" onclick="lastMonth()"/>
+			<input type="button" value=">" onclick="nextMonth()"/>
+		</div>
+	</body>
+</html>
+ 
+

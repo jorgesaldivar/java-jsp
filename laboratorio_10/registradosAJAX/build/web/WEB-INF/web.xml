@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>Inserta</servlet-name>
+        <servlet-class>SQL.Inserta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Elimina</servlet-name>
+        <servlet-class>SQL.Elimina</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Modifica</servlet-name>
+        <servlet-class>SQL.Modifica</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Inserta</servlet-name>
+        <url-pattern>/Inserta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Elimina</servlet-name>
+        <url-pattern>/Elimina</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Modifica</servlet-name>
+        <url-pattern>/Modifica</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

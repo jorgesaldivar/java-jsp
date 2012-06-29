@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+	<!-- Made by Jorge Saldivar-->
+    <title>Rebote - Lab05</title>
+    <style>
+        #cuadro{
+            position: absolute;
+            top: 100;
+            left: 100;
+            border: 1px solid black;
+            width: 500;
+            height: 500;
+            background-color:#EBDCB7;
+        }
+
+        #fin {
+            position:absolute;
+            left:5px;
+            top:50Px;
+            color:#800000;
+            font-size:24pt;
+            text-align:center;
+            display:none;
+        }
+
+        #raqueta{
+            position: absolute;
+            top: 470;
+            left: 228;
+            width: 64;
+            height: 16;
+        }
+        #bola{
+            position: absolute;
+            top: 4;
+            left: 200;
+            width: 16;
+            height: 16;
+        }
+        #marcador{
+            position: absolute;
+            top: 486;
+            left: 0;
+            width: 500;
+            height: 20;
+            font-size: 12pt;
+            color: white;
+            background-color: rgb(32,128,64);
+        }
+    </style>
+
+	<!-- Javascript Game -->
+	<script type="text/javascript">
+		
+		var 
+			//Ball coordinates
+			y = 4, 		yBall,
+			x = 200, 	xBall,
+			
+			//Player coordinates
+			xP = 228,   xPlayer,
+						yPlayer = 470,
+			
+			//Score
+			score = 0,
+			countForScore = 0,
+			
+			//Timer
+			timer,
+			
+			//Initialize variables;
+			initialize = 0, 	//default: 0, going to initialize
+			
+			//Boolean goes down or up/left or right 
+			downBool = 0,		//default down
+			leftBool = 0,		//default left
+			
+			//Objects variables
+			fin,
+			cuadro,
+			raqueta, 
+			bola, 
+			marcador
+		;
+			
+			//Loads variables of game
+			function loadVariables(){
+				
+				//Ball initial coordinates
+				y = 4, 		
+				x = 200, 	
+		
+				//Score reset
+				score = 0,
+				countForScore = 0,
+
+				//Initialize variables;
+				initialize = 0, 	//default: 0, going to initialize
+				
+				//Boolean goes down or up/left or right 
+				downBool = 0,		//default down
+				leftBool = 0,		//default left
+			
+				//Initialize object variables
+				fin = document.getElementById('fin');cuadro = document.getElementById('cuadro');raqueta = document.getElementById('raqueta');bola = document.getElementById('bola');marcador = document.getElementById('marcador');
+			}
+		
+			
+			
+			//Ball moves down
+			function moveDown() {
+				y += 6;			
+					bola.style.top = y + "px";
+					yBall = bola.offsetTop;
+				
+				//Check if player hit ball
+				if( yBall >= (raqueta.offsetTop - raqueta.offsetHeight) && (xBall >= (raqueta.offsetLeft)&& xBall <= raqueta.offsetWidth + raqueta.offsetLeft)){
+							downBool = 1;	
+				}
+				
+				//If ball hits floor, ends game
+				else if (yBall >= raqueta.offsetTop) {
+					end();
+				}
+			}
+			
+			//Ball moves up
+			function moveUp() {
+				y += -6;
+					bola.style.top = y + "px";	
+					yBall = bola.offsetTop;
+					if(yBall <= '0')
+						downBool = 0;
+			}
+			
+			//Ball moves left
+			function moveLeft() {
+				x += -6;
+					bola.style.left = x + "px";	
+					xBall = bola.offsetLeft;	
+					
+					if(xBall <= 0)
+						leftBool = 1;
+			}
+			
+			//Ball moves right
+			function moveRight() {
+				x += 6;
+					bola.style.left = x + "px";	
+					xBall = bola.offsetLeft;
+				
+					if(xBall >= cuadro.offsetWidth - bola.offsetWidth)
+						leftBool = 0;
+			}
+			
+			//Player moves left or right
+			function movePlayer(e) {
+				
+				//Read from keyboard event
+				var code;
+				if (!e) var e = window.event;
+				if (e.keyCode) code = e.keyCode;
+				else if (e.which) code = e.which;
+				
+				//Sets keyboard letter in a variable
+				var character = String.fromCharCode(code);
+				
+				//Move left 
+				if(character == "d" || character == 'D') {
+					if(raqueta.offsetLeft <= (cuadro.offsetWidth - raqueta.offsetWidth - 5)){
+						xP += 6;
+						raqueta.style.left = xP + "px";
+						xPlayer = raqueta.offsetLeft;
+					}
+				}
+				
+				//Move right
+				else if (character == "a" || character == "A") {
+					if(raqueta.offsetLeft >= 5) {
+						xP += -6;
+						raqueta.style.left = xP + "px";
+						xPlayer = raqueta.offsetLeft;
+					}
+				}	
+			}
+			
+			//Start Game
+			function init() {
+			
+				if (initialize == 0) {	
+					loadVariables();
+					fin.style.display = 'none';
+					marcador.innerHTML = 'marcador: 0';
+					
+					initialize = 1;
+				}
+				
+				timer = setTimeout('init()',50);
+				document.onkeypress = movePlayer;
+				++countForScore;
+				
+						//Checks ball goes up or down. Default: Down
+						if (downBool == 0){
+							moveDown();
+						}	else {
+							moveUp();
+						}
+						
+						//Checks ball goes left or right. Default: Left
+						if (leftBool == 0){
+							moveLeft();
+						} else {
+							moveRight();
+						}
+
+						//Calculate and display score
+						if(countForScore % 20 == 0){
+							score += 100;
+							document.getElementById('marcador').innerHTML = 'marcador: ' + score;
+						}
+			}
+			
+			//End game
+			function end(){clearTimeout(timer);initialize=0;fin.style.display = 'block';}
+			
+    </script>
+	
+  </head>
+  <body>
+  <h1>Rebote - Utilize las teclas "a" y "d" para mover jugador</h1>
+  <div id="cuadro">
+  <div id="fin">
+  <h1>SE TERMINO EL JUEGO !</h2>
+  <img src="Sad-face.jpg" width="150px"/>
+  </div>
+    <div id="raqueta">
+        <img src="raqueta.gif">
+    </div>
+    <div id="bola">
+        <img src="bola.gif">
+    </div>
+    <div id="marcador">
+        marcador: 0
+    </div>
+  </div>
+<input type="button" onclick="init()" value="Jugar"/>
+
+  </body>
+</html>

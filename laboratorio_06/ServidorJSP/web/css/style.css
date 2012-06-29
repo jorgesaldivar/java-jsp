@@ -1,0 +1,217 @@
+/************************
+Created by Jorge Saldivar
+				A01033317
+************************/
+
+/**************
+All document body
+**************/
+body{
+	background-color:#353535;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/**************
+Navigation with dropdown MENU
+**************/
+
+#center {
+	width:550px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#nav {
+	display: inline-block;
+	padding: 7px 6px 0;
+	background-color: #e6e6e6;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+}
+
+#nav li {
+	margin: 0 5px;
+	padding: 0 0 8px;
+	float: left;
+	position: relative;
+	list-style: none;
+}
+
+#nav a {
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-weight: bold;
+	color: #353535;
+	text-decoration: none;
+	display: block;
+	padding:  8px 20px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+}
+
+#nav ul a:hover {
+	background-color: #5a5a5a;
+	color: #fff;
+}
+
+#nav li:hover  ul {
+	display: block;
+	margin-top:5px;
+}
+
+#nav ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+	width: 205px;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	background: #e6e6e6;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+#nav ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul a {
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-weight: normal;
+	text-shadow: 0 1px 0 #fff;
+}
+
+/**************
+Personal Data form
+**************/
+form#form {
+	color:#fff;
+	padding:0;
+	width: 550px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+form#form fieldset{
+	background-color:#5a5a5a;
+	margin-top:10px;
+}
+
+form#form legend{
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-weight: bold; 
+	font-size:18px;
+	padding: 0 20px 0 20px;
+	background-color:#5a5a5a;
+	
+}
+
+form#form ul{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+form#form li{
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size:18px;
+}
+
+form#form label{
+	float: left;
+	width:100px;
+	text-align: right;
+	margin-right: 0.5em;
+	display: block;
+}
+
+
+form#form input[type=text],form#form input[type=email],form#form select{
+	background-color:#e6e6e6;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size:14px;
+    margin-bottom: 5px;
+    display: block;
+    padding: 4px;
+    border: solid 1px #353535;
+    width: 400px;
+}
+
+form#form input[type=submit]{	
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	cursor: pointer;
+	text-align: center;
+	padding: 5px 10px 5px 10px;
+	float:right;
+	margin-top:30px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+form#form input[type=reset]{	
+	background-color:#FF0000;
+	color:#fff;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	cursor: pointer;
+	text-align: center;
+	padding: 5px 10px 5px 10px;
+	float:left;
+	margin-top:30px;
+	margin-right:50px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+#TextBoxesGroup{
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size:18px;
+}
+
+form#form input[type=button]{	
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	cursor: pointer;
+	text-align: center;
+	padding: 5px 10px 5px 10px;
+	position:relative;
+	left:347px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+
+form#form textarea{	
+	width:510px;
+}
+
+/*************888888
+MESSAGES
+******************/
+
+.requirements{
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size:18px;
+	color:#CCCC00;
+	margin-left:110px;
+	display:none;
+	}

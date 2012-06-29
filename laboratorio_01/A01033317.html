@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+	<!--Jorge Saldivar A01033317-->
+	
+	<!--Titulo-->
+	<title>Jorge Sald&iacute;var</title>
+	
+	<!--Imagen a lado del titulo-->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!--Se define el CSS-->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	
+	<!--Javascript para pop-ups-->
+	<script language="javascript" type="text/javascript">
+		function popitup(url) {
+            var w=1200;
+            var h=600;
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+			newwindow=window.open(url,'Mis sitios','height='+h+',width='+ w +',top=' + top + ',left=' + left + ',scrollbars=1');
+			if (window.focus) {newwindow.focus()}
+			return false;
+		}
+	</script>
+</head>
+
+<html>
+
+	<body>
+		
+		<h1>Jorge Sald&iacute;var</h1>
+			<p>Mi nombre es Jorge. Estudio en el tecnol&oacute;gico de Monterrey</p>
+			<p>Cuento con varios sitios web los cuales son:</p>
+		
+		<ul>
+			<li><a href="http://www.aijole.com" onclick="return popitup('http://www.aijole.com')">www.aijole.com</a></li>
+			<li><a href="http://www.4nonsense.com" onclick="return popitup('http://www.4nonsense.com')">www.4nonsense.com</a></li>
+			<li><a href="http://www.palsocio.com" onclick="return popitup('http://www.palsocio.com')">www.palsocio.com</a></li>
+		</ul>
+		
+		<p>En los cuales se utilizar&oacute;n las siguientes herramientas:</p>
+		
+			<ol>
+				<li>PHP</li>
+				<li>Javascript</li>
+				<li>MySql</li>
+				<li>Etc.</li>
+			</ol>
+		
+		<p>Una breve descripci&oacute;n de estas:</p>
+		
+		<table>
+			<tr>
+				<th>Herramienta</th>
+				<th>Uso</th>
+			</tr>
+			<tr>
+				<td>PHP</td>
+				<td>Herramienta para generar contenido dyn&aacute;mico</td>
+			</tr>
+			<tr>
+				<td>Javascript</td>
+				<td>Funcionalidad enfocado al cliente. Ejemplo: Votar y desplegar el resultado sin refrescar el sitio</td>
+			</tr>
+		</table>
+		
+		<footer>
+			<audio controls="controls" autoplay="autoplay">
+				<source src="sounds/ChargedLightningAttack8-Bit.ogg" type="audio/ogg" />
+				Tu navegador no soporta HTML5
+			</audio> 
+			
+			<img src="images/html5-badge-h-css3-semantics.png" />
+			
+			<p>Mi correo es:</p>
+			<a href="mailto:j7saldivar@gmail.com">j7saldivar@gmail.com</a>
+		</footer>
+	
+	</body>
+	
+</html>
